@@ -1,0 +1,62 @@
+.main {
+    display: flex;
+    justify-content: center;
+}
+
+.window {
+    overflow: hidden;
+    border: 1px groove;
+}
+
+.header {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    padding: 5px;
+    background-color:#c3e01d;
+}
+
+.body {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    padding: 10px 0 10px 0;
+}
+
+.footer {
+    text-align: center;
+    padding: 5px;
+}
+
+.bar_plates {
+    display: flex;
+    margin-top: 30%;
+}
+
+.plate_list {
+    display: flex;
+    align-content: center;
+    text-align: center;
+    padding: 10px;
+}
+
+.input {
+    margin: 8px;
+    width: 10%;
+    padding: 5px;
+    border: 1px ridge;
+    border-radius: 8px;
+}
+
+.btn {
+    background-color: #c3e01d;
+    padding: 8px 20px;
+    margin-top: 5px;
+    border: 1px ridge;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#warning {
+    color: red;
+}
