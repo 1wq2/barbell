@@ -3,9 +3,11 @@
     justify-content: center;
 }
 
-.window {
+.container {
     overflow: hidden;
     border: 1px groove;
+    max-width: 450px;
+    margin: 0 auto;
 }
 
 .header {
@@ -17,11 +19,23 @@
 }
 
 .body {
-    display: flex;
+    margin: 1em 0;
+    display: contents;
     justify-content: center;
     text-align: center;
-    padding: 10px 0 10px 0;
+    padding: 10px 0px 10px 0px;
 }
+.body .background{
+    background-size: 28em 15em;
+    background-position: center;
+    height: 14em;
+    transition: 0.2s;
+    background-image: url("https://us.123rf.com/450wm/steinar14/steinar141609/steinar14160900286/63526766-pesos-de-elevaci%C3%B3n-del-hombre-fuerte-y-hermoso-aislado-en-el-fondo-blanco.jpg?ver=6");
+}
+
+.body .photo-active {
+    background-size: 30.8em 16.5em;
+    transition: 0.2s; }
 
 .footer {
     text-align: center;
@@ -60,3 +74,4 @@
 #warning {
     color: red;
 }
+

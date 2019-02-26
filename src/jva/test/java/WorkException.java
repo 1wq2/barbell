@@ -1,4 +1,4 @@
-package java.test;
+package jva.test.java;
 
 public class WorkException extends Exception {
 

@@ -1,24 +1,52 @@
-package java.main;
+package jva.main.java;
 
-import java.test.WorkException;
+import jva.test.java.WorkException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
+import java.util.Scanner;
 
 public class Barbell {
 
-    private ArrayList<Integer> list = new ArrayList<>();
+    private static ArrayList<Integer> list = new ArrayList<>();
 
-    private int arraySum = 0;
+    private static int arraySum = 0;
+
+    public static void main(String[] args) throws WorkException {
+        Scanner in = new Scanner(System.in);
+        System.out.println("Enter numbers for your array");
+
+        while(in.hasNextInt()){
+            list.add(in.nextInt());
+        }
+        System.out.println(list);
+
+        raisingTheBarbell(list);
+    }
+    private static int raisingTheBarbell(ArrayList<Integer> array) throws WorkException {
+
+        checkRestrictions(array);
+        int result = removeDuplicates(array);
+        if (array.size() > 2) {
+            result = sumWeight(result, list);
+        } else {
+            result = checkSize(array);
+        }
+        return result;
+    }
+
     /**
      * This method checks the restrictions imposed on the program.
+     * @param array
      */
-    private void checkRestrictions(int[] array) throws WorkException {
+    private static void checkRestrictions(ArrayList<Integer> array) throws WorkException {
         boolean isNeedSave = false;
-        this.arraySum = Arrays.stream(array).sum();
-        if (this.arraySum <= 10000) {
-            for (int i = 0; i < array.length - 1; i++) {
-                if (array[i] <= 20 && array[i] >= 1) {
+
+        for(Integer i : list)
+            arraySum+=i;
+
+        if (arraySum <= 10000) {
+            for (int i = 0; i < array.size() - 1; i++) {
+                if (array.get(i) <= 20 && array.get(i) >= 1) {
                     isNeedSave = true;
                 }
             }
@@ -31,33 +59,37 @@ public class Barbell {
     }
     /**
      * This method checks the array size.
+     * @param array
      */
-    private int checkSize(int[] array) {
+    private static int checkSize(ArrayList<Integer> array) {
         int isNeedSave = 0;
-        if (array.length <= 2) {
-            if (array[0] == array[1]) {
-                isNeedSave = array[0] * 2;
+        if (array.size() <= 2) {
+            if (array.get(0) == array.get(1)) {
+                isNeedSave = array.get(0) * 2;
             }
         }
         return isNeedSave;
     }
     /**
      * This method removes duplicates in the array.
-    */
-    private int removeDuplicates(int[] array) {
+     * @param array
+     */
+    private static int removeDuplicates(ArrayList<Integer> array) {
         int i = 0;
         int sum = 0;
-        Arrays.sort(array);
-        while (i < array.length) {
-            if (i == array.length - 1) {
-                this.list.add(array[i]);
+
+        Collections.sort(array);
+
+        while (i < array.size()) {
+            if (i == array.size() - 1) {
+                list.add(array.get(i));
                 break;
             }
-            if (array[i] == array[i + 1]) {
-                sum += array[i] * 2;
+            if (array.get(i) == array.get(i + 1)) {
+                sum += array.get(i) * 2;
                 i += 2;
             } else {
-                this.list.add(array[i++]);
+                list.add(array.get(i++));
             }
         }
         return sum;
@@ -65,10 +97,10 @@ public class Barbell {
     /**
      * One option of calculating the weight of plates on the barbell.
      */
-    private int sumWeight(int sum, ArrayList<Integer> list) {
+    private static int sumWeight(int sum, ArrayList<Integer> list) {
         Collections.reverse(list);
         int result, sumLeft = 0, sumRight = 0;
-        int halfAmount = this.arraySum / 2;
+        int halfAmount = arraySum / 2;
 
         for (Integer aList : list) {
             if (Math.abs(sumLeft + aList) == halfAmount |
@@ -100,24 +132,12 @@ public class Barbell {
         }
         return result;
     }
-    /**
-     main method
-     */
-    private int raisingTheBarbell(int[] array) throws WorkException {
-        checkRestrictions(array);
-        int result = removeDuplicates(array);
-        if (array.length > 2) {
-            result = sumWeight(result, this.list);
-        } else {
-            result = checkSize(array);
-        }
-        return result;
-    }
+
     /**
      * This method prints information to the console..
      */
     public int printTest(int[] array) throws WorkException {
-        int value = raisingTheBarbell(array);
+        int value = raisingTheBarbell(list);
         if (value > 0) {
             System.out.print("The total weight of the barbell " + value);
             System.out.println("The weight on the left and right side = " + value / 2);

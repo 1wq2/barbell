@@ -1,7 +1,8 @@
-package java.test;
-import java.main.Barbell;
+package jva.test.java;
+import jva.main.java.Barbell;
 
 import java.util.Random;
+
 import org.junit.Test;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
